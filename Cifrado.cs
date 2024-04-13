@@ -22,7 +22,7 @@ class Program {
     }
 
     public static string Cifrar(string mensaje) {
-        int shift = 3;
+        int shift = 7;
         StringBuilder constructor = new StringBuilder();
         foreach (char c in mensaje) {
             int i = Program.alfabeto.IndexOf(c);
@@ -37,7 +37,7 @@ class Program {
 
     public static string Decifrar(string mensaje)
     {
-        int shift = -3;
+        int shift = -7;
         StringBuilder constructor = new StringBuilder();
         foreach (char c in mensaje)
         {
