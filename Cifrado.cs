@@ -3,7 +3,7 @@ using System.Text;
 
 
 class Program {
-    static string alfabeto = "abcdefghijklmñnopqrstuvwxyz";
+    static string alfabeto = "abcdefghijklmñnopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890_-+,#$%&/()=¿?¡!|,.;:{}[]";
     public static void Main() {
         Console.WriteLine("Ingrese la frase a cifrar");
 
