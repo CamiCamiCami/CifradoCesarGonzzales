@@ -18,7 +18,7 @@ class Program {
         {
             string msj_cifrado = Program.Cifrar(msj, i);
             Console.WriteLine(msj_cifrado);
-            string msj_decifrado = Program.Decifrar(msj_cifrado);
+            string msj_decifrado = Program.Decifrar(msj_cifrado, i);
             Console.WriteLine(msj_decifrado);
         }
     }
@@ -36,20 +36,9 @@ class Program {
         return constructor.ToString();
     }
 
-    public static string Decifrar(string mensaje)
+    public static string Decifrar(string mensaje, int shift)
     {
-        int shift = -7;
-        StringBuilder constructor = new StringBuilder();
-        foreach (char c in mensaje)
-        {
-            int i = Program.alfabeto.IndexOf(c);
-            i += shift;
-            if (i < 0) { i += Program.alfabeto.Length; }
-            i %= Program.alfabeto.Length;
-            char char_cifrado = Program.alfabeto[i];
-            constructor.Append(char_cifrado);
-        }
-        return constructor.ToString();
+        return Program.Cifrar(mensaje, -shift);
     }
 
 }
