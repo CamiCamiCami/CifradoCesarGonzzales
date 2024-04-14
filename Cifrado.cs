@@ -13,16 +13,17 @@ class Program {
             Console.WriteLine("Ingrese un mensaje no vacio");
             msj = Console.ReadLine();
         }
-        Program program = new Program();
 
-        string msj_cifrado = Program.Cifrar(msj);
-        Console.WriteLine(msj_cifrado);
-        string msj_decifrado = Program.Decifrar(msj_cifrado);
-        Console.WriteLine(msj_decifrado);
+        for (int i = 0; i < 10; i++)
+        {
+            string msj_cifrado = Program.Cifrar(msj, i);
+            Console.WriteLine(msj_cifrado);
+            string msj_decifrado = Program.Decifrar(msj_cifrado);
+            Console.WriteLine(msj_decifrado);
+        }
     }
 
-    public static string Cifrar(string mensaje) {
-        int shift = 7;
+    public static string Cifrar(string mensaje, int shift) {
         StringBuilder constructor = new StringBuilder();
         foreach (char c in mensaje) {
             int i = Program.alfabeto.IndexOf(c);
