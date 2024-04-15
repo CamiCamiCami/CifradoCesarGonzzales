@@ -7,18 +7,34 @@ class Program {
     public static void Main() {
         Console.WriteLine("Ingrese la frase a cifrar");
 
-        string msj = Console.ReadLine();
-        while (string.IsNullOrEmpty(msj))
+        string frase = Console.ReadLine();
+        while (!Program.FraseEsValida(frase))
         {
-            Console.WriteLine("Ingrese un mensaje no vacio");
-            msj = Console.ReadLine();
+            frase = Console.ReadLine();
         }
-        Program program = new Program();
 
-        string msj_cifrado = Program.Cifrar(msj);
-        Console.WriteLine(msj_cifrado);
-        string msj_decifrado = Program.Decifrar(msj_cifrado);
-        Console.WriteLine(msj_decifrado);
+        string frase_cifrada = Program.Cifrar(frase);
+        Console.WriteLine(frase_cifrada);
+        frase = Program.Decifrar(frase_cifrada);
+        Console.WriteLine(frase);
+    }
+
+    private static bool FraseEsValida(string frase)
+    {
+        if (string.IsNullOrEmpty(frase))
+        {
+            Console.WriteLine("Frase Invalida - Frase Vacia");
+            return false;
+        }
+        foreach (char c in frase)
+        {
+            if (!Program.alfabeto.Contains(c) && !(c == '\0' || c == '\n'))
+            {
+                Console.WriteLine("Frase Invalida - Caracter '" + c + "' no puede ser cifrado");
+                return false;
+            }
+        }
+        return true;
     }
 
     public static string Cifrar(string mensaje) {
@@ -34,6 +50,7 @@ class Program {
         }
         return constructor.ToString();
     }
+
 
     public static string Decifrar(string mensaje)
     {
