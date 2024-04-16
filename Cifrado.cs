@@ -7,20 +7,35 @@ class Program {
     public static void Main() {
         Console.WriteLine("Ingrese la frase a cifrar");
 
-        string msj = Console.ReadLine();
-        while (string.IsNullOrEmpty(msj))
+        string frase = Console.ReadLine();
+        while (!Program.FraseEsValida(frase))
         {
-            Console.WriteLine("Ingrese un mensaje no vacio");
-            msj = Console.ReadLine();
+            frase = Console.ReadLine();
         }
 
-        for (int i = 0; i < 10; i++)
+        string frase_cifrada = Program.Cifrar(frase);
+        Console.WriteLine(frase_cifrada);
+        frase = Program.Decifrar(frase_cifrada);
+        Console.WriteLine(frase);
+    }
+
+    private static bool FraseEsValida(string frase)
+    {
+        if (string.IsNullOrEmpty(frase))
         {
-            string msj_cifrado = Program.Cifrar(msj, i);
-            Console.WriteLine(msj_cifrado);
-            string msj_decifrado = Program.Decifrar(msj_cifrado, i);
-            Console.WriteLine(msj_decifrado);
+            Console.WriteLine("Frase Invalida - Frase Vacia");
+            return false;
         }
+        foreach (char c in frase)
+        {
+            if (!Program.alfabeto.Contains(c) && !(c == '\0' || c == '\n'))
+            {
+                Console.WriteLine("Frase Invalida - Caracter '" + c + "' no puede ser cifrado");
+                return false;
+            }
+        }
+        return true;
+
     }
 
     public static string Cifrar(string mensaje, int shift) {
@@ -36,7 +51,9 @@ class Program {
         return constructor.ToString();
     }
 
-    public static string Decifrar(string mensaje, int shift)
+
+
+    public static string Decifrar(string mensaje)
     {
         return Program.Cifrar(mensaje, -shift);
     }
