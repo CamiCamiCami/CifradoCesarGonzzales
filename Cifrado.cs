@@ -35,10 +35,10 @@ class Program {
             }
         }
         return true;
+
     }
 
-    public static string Cifrar(string mensaje) {
-        int shift = 7;
+    public static string Cifrar(string mensaje, int shift) {
         StringBuilder constructor = new StringBuilder();
         foreach (char c in mensaje) {
             int i = Program.alfabeto.IndexOf(c);
@@ -52,20 +52,10 @@ class Program {
     }
 
 
+
     public static string Decifrar(string mensaje)
     {
-        int shift = -7;
-        StringBuilder constructor = new StringBuilder();
-        foreach (char c in mensaje)
-        {
-            int i = Program.alfabeto.IndexOf(c);
-            i += shift;
-            if (i < 0) { i += Program.alfabeto.Length; }
-            i %= Program.alfabeto.Length;
-            char char_cifrado = Program.alfabeto[i];
-            constructor.Append(char_cifrado);
-        }
-        return constructor.ToString();
+        return Program.Cifrar(mensaje, -shift);
     }
 
 }
